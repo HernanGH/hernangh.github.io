@@ -1,406 +1,477 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hernán Condorí | Senior Software Engineer</title>
-    <meta name="description" content="Hernán Condorí — Senior Software Engineer en Tiendanube. Especializado en React, TypeScript, Node.js y AWS. Portfolio profesional." />
-    <meta name="keywords" content="Hernán Condorí, Software Engineer, React, TypeScript, Node.js, AWS, Portfolio" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
-  </head>
-  <body>
-    <!-- ── Navbar ──────────────────────────────────────── -->
-    <nav class="navbar" id="navbar">
-      <a href="#hero" class="nav-logo">HC</a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#about">Sobre mí</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experiencia</a></li>
-        <li><a href="#education">Educación</a></li>
-        <li><a href="#contact">Contacto</a></li>
-      </ul>
-      <div class="nav-right">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
-        <button class="hamburger" id="hamburger" aria-label="Menú">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
 
-    <!-- ── Hero ────────────────────────────────────────── -->
-    <section class="hero" id="hero">
-      <div class="hero-bg">
-        <div class="gradient-orb"></div>
-        <div class="gradient-orb"></div>
-        <div class="gradient-orb"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hernán Condorí | Senior Software Engineer</title>
+  <meta name="description"
+    content="Hernán Condorí — Senior Software Engineer en Tiendanube. Especializado en React, TypeScript, Node.js y AWS. Portfolio profesional." />
+  <meta name="keywords" content="Hernán Condorí, Software Engineer, React, TypeScript, Node.js, AWS, Portfolio" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+
+<body>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB0amfju-RPB8Z9XgF22VPTF0T5qjwu6Tw",
+      authDomain: "portfolio-ui-f0a0b.firebaseapp.com",
+      projectId: "portfolio-ui-f0a0b",
+      storageBucket: "portfolio-ui-f0a0b.firebasestorage.app",
+      messagingSenderId: "575882762291",
+      appId: "1:575882762291:web:46deb26f0b9cdeee03ab46",
+      measurementId: "G-KLZJ4S6ZRQ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    // Expose Firestore utilities for main.js
+    window.firebaseDB = { db, collection, addDoc, serverTimestamp };
+    window.dispatchEvent(new Event('firebase-ready'));
+  </script>
+  <!-- ── Navbar ──────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-logo">HC</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">Sobre mí</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experiencia</a></li>
+      <li><a href="#education">Educación</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Hero ────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="gradient-orb"></div>
+      <div class="gradient-orb"></div>
+      <div class="gradient-orb"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Disponible para nuevos desafíos
       </div>
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="dot"></span>
-          Disponible para nuevos desafíos
+      <h1>
+        Hola, soy<br />
+        <span class="gradient-text">Hernán Condorí</span>
+      </h1>
+      <p class="hero-subtitle">Senior Software Engineer · Software Builder</p>
+      <div class="typing-wrapper">
+        <span id="typing-text"></span><span class="typing-cursor"></span>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://www.linkedin.com/in/hernan-condori" target="_blank" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/HernanGH" target="_blank" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+          </svg>
+          GitHub
+        </a>
+        <a href="mailto:hjcondori04@gmail.com" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          </svg>
+          Email
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Años Exp.</div>
         </div>
-        <h1>
-          Hola, soy<br />
-          <span class="gradient-text">Hernán Condorí</span>
-        </h1>
-        <p class="hero-subtitle">Senior Software Engineer · Software Builder</p>
-        <div class="typing-wrapper">
-          <span id="typing-text"></span><span class="typing-cursor"></span>
+        <div class="stat">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Empresas</div>
         </div>
-        <div class="hero-ctas">
-          <a href="https://www.linkedin.com/in/hernan-condori" target="_blank" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
+        <div class="stat">
+          <div class="stat-number">2K+</div>
+          <div class="stat-label">Seguidores</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ───────────────────────────────────────── -->
+  <section class="section" id="about">
+    <div class="section-header reveal">
+      <span class="section-label">Sobre mí</span>
+      <h2 class="section-title">Construyo software que importa</h2>
+      <p class="section-desc">Proactivo, disciplinado y apasionado por la tecnología. Enfocado en crear productos
+        escalables con código limpio y buenas prácticas.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Soy un <strong>Senior Software Engineer</strong> con más de 8 años de experiencia construyendo productos
+          digitales de alto impacto. Actualmente trabajo en <strong>Tiendanube</strong>, la plataforma de e-commerce
+          líder en Latinoamérica.</p>
+        <p>A lo largo de mi carrera trabajé en empresas como <strong>Blockchain.com</strong>, <strong>IPSY</strong>,
+          <strong>Elementum</strong> y más. También fui <strong>profesor FullStack en Coderhouse</strong> y
+          <strong>Mentor Backend en Acámica</strong>.</p>
+        <p>Me destaco por trabajar con autonomía completa, aprender rápido, y siempre estar abierto a colaborar y ayudar
+          a otros ingenieros del equipo.</p>
+      </div>
+      <div class="about-highlights reveal reveal-delay-2">
+        <div class="highlight-card">
+          <div class="highlight-icon">🚀</div>
+          <div class="highlight-value">8+</div>
+          <div class="highlight-label">Años de experiencia</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🏢</div>
+          <div class="highlight-value">8</div>
+          <div class="highlight-label">Empresas</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🎓</div>
+          <div class="highlight-value">Prof.</div>
+          <div class="highlight-label">Coderhouse</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🌐</div>
+          <div class="highlight-value">ES/EN</div>
+          <div class="highlight-label">Bilingüe</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ──────────────────────────────────────── -->
+  <section class="section" id="skills">
+    <div class="section-header reveal">
+      <span class="section-label">Tecnologías</span>
+      <h2 class="section-title">Stack técnico</h2>
+      <p class="section-desc">Las herramientas y tecnologías con las que trabajo día a día para construir productos
+        increíbles.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">⚛️</div>
+        <div class="skill-name">React</div>
+        <div class="skill-level">
+          <div class="skill-level-bar" style="--level: 95%"></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-icon">📱</div>
+        <div class="skill-name">React Native</div>
+        <div class="skill-level">
+          <div class="skill-level-bar" style="--level: 90%"></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-icon">🔷</div>
+        <div class="skill-name">TypeScript</div>
+        <div class="skill-level">
+          <div class="skill-level-bar" style="--level: 92%"></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-icon">🟢</div>
+        <div class="skill-name">Node.js</div>
+        <div class="skill-level">
+          <div class="skill-level-bar" style="--level: 88%"></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-icon">▲</div>
+        <div class="skill-name">Next.js</div>
+        <div class="skill-level">
+          <div class="skill-level-bar" style="--level: 85%"></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <div class="skill-icon">☁️</div>
+        <div class="skill-name">AWS</div>
+        <div class="skill-level">
+          <div class="skill-level-bar" style="--level: 82%"></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-icon">🐘</div>
+        <div class="skill-name">PostgreSQL</div>
+        <div class="skill-level">
+          <div class="skill-level-bar" style="--level: 78%"></div>
+        </div>
+      </div>
+      <div class="skill-card reveal reveal-delay-3">
+        <div class="skill-icon">🟨</div>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-level">
+          <div class="skill-level-bar" style="--level: 95%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ──────────────────────────────────── -->
+  <section class="section" id="experience">
+    <div class="section-header reveal">
+      <span class="section-label">Trayectoria</span>
+      <h2 class="section-title">Experiencia profesional</h2>
+      <p class="section-desc">Más de 8 años construyendo productos digitales en empresas de alto impacto en
+        Latinoamérica y el mundo.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Tiendanube</span>
+            <span class="timeline-date">Jul 2025 — Presente</span>
+          </div>
+          <div class="timeline-role">Senior Software Engineer</div>
+          <p class="timeline-desc">Plataforma líder de e-commerce en Latinoamérica. Desarrollo de soluciones escalables
+            para miles de merchants en Argentina, Brasil y México.</p>
+          <div class="timeline-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">React</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">IPSY</span>
+            <span class="timeline-date">Oct 2023 — May 2025</span>
+          </div>
+          <div class="timeline-role">Senior Software Engineer</div>
+          <p class="timeline-desc">Desarrollo de features end-to-end en una plataforma de belleza y e-commerce con
+            millones de usuarios. Foco en performance y calidad de código.</p>
+          <div class="timeline-tags">
+            <span class="tag">TypeScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Coderhouse</span>
+            <span class="timeline-date">Abr 2021 — Dic 2024</span>
+          </div>
+          <div class="timeline-role">FullStack Professor</div>
+          <p class="timeline-desc">Profesor de desarrollo FullStack. Formando a la próxima generación de desarrolladores
+            con tecnologías modernas y buenas prácticas.</p>
+          <div class="timeline-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Docencia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">X3M</span>
+            <span class="timeline-date">Ene 2023 — Sep 2023</span>
+          </div>
+          <div class="timeline-role">Software Engineer</div>
+          <p class="timeline-desc">Desarrollo de software en modalidad híbrida. Construcción de soluciones con
+            TypeScript.</p>
+          <div class="timeline-tags">
+            <span class="tag">TypeScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Blockchain.com</span>
+            <span class="timeline-date">Ene 2022 — Dic 2022</span>
+          </div>
+          <div class="timeline-role">Senior Software Engineer</div>
+          <p class="timeline-desc">Desarrollo en la plataforma global de criptomonedas y wallets digitales. Trabajo en
+            features de alto impacto para millones de usuarios.</p>
+          <div class="timeline-tags">
+            <span class="tag">TypeScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Elementum</span>
+            <span class="timeline-date">Jun 2019 — Dic 2021</span>
+          </div>
+          <div class="timeline-role">Software Engineer → Senior Software Engineer</div>
+          <p class="timeline-desc">2 años y 7 meses de crecimiento profesional. Evolución de Software Engineer a Senior,
+            desarrollando soluciones de supply chain con tecnología de punta.</p>
+          <div class="timeline-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">React</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Acámica</span>
+            <span class="timeline-date">Jun 2021 — Ago 2021</span>
+          </div>
+          <div class="timeline-role">Mentor Backend</div>
+          <p class="timeline-desc">Mentoría en desarrollo backend, guiando a estudiantes en su camino como
+            desarrolladores.</p>
+          <div class="timeline-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Mentoría</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Phinx</span>
+            <span class="timeline-date">Sep 2018 — Jun 2019</span>
+          </div>
+          <div class="timeline-role">Ssr Software Developer</div>
+          <p class="timeline-desc">Desarrollo de software como developer semi-senior en consultora tecnológica.</p>
+          <div class="timeline-tags">
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-company">Grava Digital</span>
+            <span class="timeline-date">Ago 2016 — Ago 2018</span>
+          </div>
+          <div class="timeline-role">Jr → Ssr Software Developer</div>
+          <p class="timeline-desc">Inicio de carrera profesional. Crecimiento de Jr a Ssr Developer durante 2 años en
+            agencia digital ubicada en Ramos Mejía.</p>
+          <div class="timeline-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Web Development</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Education ───────────────────────────────────── -->
+  <section class="section" id="education">
+    <div class="section-header reveal">
+      <span class="section-label">Educación</span>
+      <h2 class="section-title">Formación académica</h2>
+    </div>
+    <div class="education-card reveal">
+      <div class="education-icon">🎓</div>
+      <div class="education-degree">Ingeniería en Sistemas</div>
+      <div class="education-school">Universidad Nacional de La Matanza</div>
+      <div class="education-year">2012 — 2018</div>
+    </div>
+  </section>
+
+
+
+  <!-- ── Contact ─────────────────────────────────────── -->
+  <section class="section" id="contact">
+    <div class="section-header reveal">
+      <span class="section-label">Contacto</span>
+      <h2 class="section-title">Trabajemos juntos</h2>
+      <p class="section-desc">¿Tenés un proyecto en mente? ¡Hablemos!</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Conectemos</h3>
+        <p>Estoy abierto a nuevas oportunidades, colaboraciones y proyectos interesantes. No dudes en escribirme.</p>
+        <div class="contact-links">
+          <a href="mailto:hjcondori04@gmail.com" class="contact-link">
+            <span class="contact-link-icon">📧</span>
+            hjcondori04@gmail.com
           </a>
-          <a href="https://github.com/HernanGH" target="_blank" class="btn btn-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            GitHub
+          <a href="https://www.linkedin.com/in/hernan-condori" target="_blank" class="contact-link">
+            <span class="contact-link-icon">💼</span>
+            linkedin.com/in/hernan-condori
           </a>
-          <a href="mailto:hjcondori04@gmail.com" class="btn btn-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            Email
+          <a href="https://github.com/HernanGH" target="_blank" class="contact-link">
+            <span class="contact-link-icon">🐙</span>
+            github.com/HernanGH
           </a>
         </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-number">8+</div>
-            <div class="stat-label">Años Exp.</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">8</div>
-            <div class="stat-label">Empresas</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">2K+</div>
-            <div class="stat-label">Seguidores</div>
-          </div>
-        </div>
       </div>
-    </section>
-
-    <!-- ── About ───────────────────────────────────────── -->
-    <section class="section" id="about">
-      <div class="section-header reveal">
-        <span class="section-label">Sobre mí</span>
-        <h2 class="section-title">Construyo software que importa</h2>
-        <p class="section-desc">Proactivo, disciplinado y apasionado por la tecnología. Enfocado en crear productos escalables con código limpio y buenas prácticas.</p>
+      <div class="contact-form-wrapper reveal reveal-delay-2">
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" placeholder="Contame sobre tu proyecto..." rows="5"
+              required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviar mensaje ✉️</button>
+        </form>
       </div>
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p>Soy un <strong>Senior Software Engineer</strong> con más de 8 años de experiencia construyendo productos digitales de alto impacto. Actualmente trabajo en <strong>Tiendanube</strong>, la plataforma de e-commerce líder en Latinoamérica.</p>
-          <p>A lo largo de mi carrera trabajé en empresas como <strong>Blockchain.com</strong>, <strong>IPSY</strong>, <strong>Elementum</strong> y más. También fui <strong>profesor FullStack en Coderhouse</strong> y <strong>Mentor Backend en Acámica</strong>.</p>
-          <p>Me destaco por trabajar con autonomía completa, aprender rápido, y siempre estar abierto a colaborar y ayudar a otros ingenieros del equipo.</p>
-        </div>
-        <div class="about-highlights reveal reveal-delay-2">
-          <div class="highlight-card">
-            <div class="highlight-icon">🚀</div>
-            <div class="highlight-value">8+</div>
-            <div class="highlight-label">Años de experiencia</div>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">🏢</div>
-            <div class="highlight-value">8</div>
-            <div class="highlight-label">Empresas</div>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">🎓</div>
-            <div class="highlight-value">Prof.</div>
-            <div class="highlight-label">Coderhouse</div>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-icon">🌐</div>
-            <div class="highlight-value">ES/EN</div>
-            <div class="highlight-label">Bilingüe</div>
-          </div>
-        </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#about">Sobre mí</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experiencia</a>
+        <a href="#education">Educación</a>
+        <a href="#contact">Contacto</a>
       </div>
-    </section>
+      <p class="footer-copy">
+        © 2026 Hernán Condorí · Hecho con <span class="heart">❤️</span> desde Buenos Aires, Argentina
+      </p>
+    </div>
+  </footer>
 
-    <!-- ── Skills ──────────────────────────────────────── -->
-    <section class="section" id="skills">
-      <div class="section-header reveal">
-        <span class="section-label">Tecnologías</span>
-        <h2 class="section-title">Stack técnico</h2>
-        <p class="section-desc">Las herramientas y tecnologías con las que trabajo día a día para construir productos increíbles.</p>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card reveal">
-          <div class="skill-icon">⚛️</div>
-          <div class="skill-name">React</div>
-          <div class="skill-level"><div class="skill-level-bar" style="--level: 95%"></div></div>
-        </div>
-        <div class="skill-card reveal reveal-delay-1">
-          <div class="skill-icon">📱</div>
-          <div class="skill-name">React Native</div>
-          <div class="skill-level"><div class="skill-level-bar" style="--level: 90%"></div></div>
-        </div>
-        <div class="skill-card reveal reveal-delay-2">
-          <div class="skill-icon">🔷</div>
-          <div class="skill-name">TypeScript</div>
-          <div class="skill-level"><div class="skill-level-bar" style="--level: 92%"></div></div>
-        </div>
-        <div class="skill-card reveal reveal-delay-1">
-          <div class="skill-icon">🟢</div>
-          <div class="skill-name">Node.js</div>
-          <div class="skill-level"><div class="skill-level-bar" style="--level: 88%"></div></div>
-        </div>
-        <div class="skill-card reveal reveal-delay-2">
-          <div class="skill-icon">▲</div>
-          <div class="skill-name">Next.js</div>
-          <div class="skill-level"><div class="skill-level-bar" style="--level: 85%"></div></div>
-        </div>
-        <div class="skill-card reveal reveal-delay-3">
-          <div class="skill-icon">☁️</div>
-          <div class="skill-name">AWS</div>
-          <div class="skill-level"><div class="skill-level-bar" style="--level: 82%"></div></div>
-        </div>
-        <div class="skill-card reveal reveal-delay-2">
-          <div class="skill-icon">🐘</div>
-          <div class="skill-name">PostgreSQL</div>
-          <div class="skill-level"><div class="skill-level-bar" style="--level: 78%"></div></div>
-        </div>
-        <div class="skill-card reveal reveal-delay-3">
-          <div class="skill-icon">🟨</div>
-          <div class="skill-name">JavaScript</div>
-          <div class="skill-level"><div class="skill-level-bar" style="--level: 95%"></div></div>
-        </div>
-      </div>
-    </section>
+  <script src="main.js"></script>
+</body>
 
-    <!-- ── Experience ──────────────────────────────────── -->
-    <section class="section" id="experience">
-      <div class="section-header reveal">
-        <span class="section-label">Trayectoria</span>
-        <h2 class="section-title">Experiencia profesional</h2>
-        <p class="section-desc">Más de 8 años construyendo productos digitales en empresas de alto impacto en Latinoamérica y el mundo.</p>
-      </div>
-      <div class="timeline">
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">Tiendanube</span>
-              <span class="timeline-date">Jul 2025 — Presente</span>
-            </div>
-            <div class="timeline-role">Senior Software Engineer</div>
-            <p class="timeline-desc">Plataforma líder de e-commerce en Latinoamérica. Desarrollo de soluciones escalables para miles de merchants en Argentina, Brasil y México.</p>
-            <div class="timeline-tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">React</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">IPSY</span>
-              <span class="timeline-date">Oct 2023 — May 2025</span>
-            </div>
-            <div class="timeline-role">Senior Software Engineer</div>
-            <p class="timeline-desc">Desarrollo de features end-to-end en una plataforma de belleza y e-commerce con millones de usuarios. Foco en performance y calidad de código.</p>
-            <div class="timeline-tags">
-              <span class="tag">TypeScript</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">Coderhouse</span>
-              <span class="timeline-date">Abr 2021 — Dic 2024</span>
-            </div>
-            <div class="timeline-role">FullStack Professor</div>
-            <p class="timeline-desc">Profesor de desarrollo FullStack. Formando a la próxima generación de desarrolladores con tecnologías modernas y buenas prácticas.</p>
-            <div class="timeline-tags">
-              <span class="tag">React</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">Docencia</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">X3M</span>
-              <span class="timeline-date">Ene 2023 — Sep 2023</span>
-            </div>
-            <div class="timeline-role">Software Engineer</div>
-            <p class="timeline-desc">Desarrollo de software en modalidad híbrida. Construcción de soluciones con TypeScript.</p>
-            <div class="timeline-tags">
-              <span class="tag">TypeScript</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">Blockchain.com</span>
-              <span class="timeline-date">Ene 2022 — Dic 2022</span>
-            </div>
-            <div class="timeline-role">Senior Software Engineer</div>
-            <p class="timeline-desc">Desarrollo en la plataforma global de criptomonedas y wallets digitales. Trabajo en features de alto impacto para millones de usuarios.</p>
-            <div class="timeline-tags">
-              <span class="tag">TypeScript</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">Elementum</span>
-              <span class="timeline-date">Jun 2019 — Dic 2021</span>
-            </div>
-            <div class="timeline-role">Software Engineer → Senior Software Engineer</div>
-            <p class="timeline-desc">2 años y 7 meses de crecimiento profesional. Evolución de Software Engineer a Senior, desarrollando soluciones de supply chain con tecnología de punta.</p>
-            <div class="timeline-tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">React</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">Acámica</span>
-              <span class="timeline-date">Jun 2021 — Ago 2021</span>
-            </div>
-            <div class="timeline-role">Mentor Backend</div>
-            <p class="timeline-desc">Mentoría en desarrollo backend, guiando a estudiantes en su camino como desarrolladores.</p>
-            <div class="timeline-tags">
-              <span class="tag">Node.js</span>
-              <span class="tag">Mentoría</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">Phinx</span>
-              <span class="timeline-date">Sep 2018 — Jun 2019</span>
-            </div>
-            <div class="timeline-role">Ssr Software Developer</div>
-            <p class="timeline-desc">Desarrollo de software como developer semi-senior en consultora tecnológica.</p>
-            <div class="timeline-tags">
-              <span class="tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <div class="timeline-header">
-              <span class="timeline-company">Grava Digital</span>
-              <span class="timeline-date">Ago 2016 — Ago 2018</span>
-            </div>
-            <div class="timeline-role">Jr → Ssr Software Developer</div>
-            <p class="timeline-desc">Inicio de carrera profesional. Crecimiento de Jr a Ssr Developer durante 2 años en agencia digital ubicada en Ramos Mejía.</p>
-            <div class="timeline-tags">
-              <span class="tag">JavaScript</span>
-              <span class="tag">Web Development</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ── Education ───────────────────────────────────── -->
-    <section class="section" id="education">
-      <div class="section-header reveal">
-        <span class="section-label">Educación</span>
-        <h2 class="section-title">Formación académica</h2>
-      </div>
-      <div class="education-card reveal">
-        <div class="education-icon">🎓</div>
-        <div class="education-degree">Ingeniería en Sistemas</div>
-        <div class="education-school">Universidad Nacional de La Matanza</div>
-        <div class="education-year">2012 — 2018</div>
-      </div>
-    </section>
-
-
-
-    <!-- ── Contact ─────────────────────────────────────── -->
-    <section class="section" id="contact">
-      <div class="section-header reveal">
-        <span class="section-label">Contacto</span>
-        <h2 class="section-title">Trabajemos juntos</h2>
-        <p class="section-desc">¿Tenés un proyecto en mente? ¡Hablemos!</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info reveal">
-          <h3>Conectemos</h3>
-          <p>Estoy abierto a nuevas oportunidades, colaboraciones y proyectos interesantes. No dudes en escribirme.</p>
-          <div class="contact-links">
-            <a href="mailto:hjcondori04@gmail.com" class="contact-link">
-              <span class="contact-link-icon">📧</span>
-              hjcondori04@gmail.com
-            </a>
-            <a href="https://www.linkedin.com/in/hernan-condori" target="_blank" class="contact-link">
-              <span class="contact-link-icon">💼</span>
-              linkedin.com/in/hernan-condori
-            </a>
-            <a href="https://github.com/HernanGH" target="_blank" class="contact-link">
-              <span class="contact-link-icon">🐙</span>
-              github.com/HernanGH
-            </a>
-          </div>
-        </div>
-        <div class="contact-form-wrapper reveal reveal-delay-2">
-          <form class="contact-form" id="contact-form">
-            <div class="form-group">
-              <label for="name">Nombre</label>
-              <input type="text" id="name" name="name" placeholder="Tu nombre" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" required />
-            </div>
-            <div class="form-group">
-              <label for="message">Mensaje</label>
-              <textarea id="message" name="message" placeholder="Contame sobre tu proyecto..." rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Enviar mensaje ✉️</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Footer ──────────────────────────────────────── -->
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-links">
-          <a href="#about">Sobre mí</a>
-          <a href="#skills">Skills</a>
-          <a href="#experience">Experiencia</a>
-          <a href="#education">Educación</a>
-          <a href="#contact">Contacto</a>
-        </div>
-        <p class="footer-copy">
-          © 2026 Hernán Condorí · Hecho con <span class="heart">❤️</span> desde Buenos Aires, Argentina
-        </p>
-      </div>
-    </footer>
-
-    <script src="main.js"></script>
-  </body>
 </html>

@@ -119,20 +119,64 @@ const sectionObserver = new IntersectionObserver(
 
 sections.forEach(section => sectionObserver.observe(section));
 
-// ── Contact Form ──────────────────────────────────────
+// ── Contact Form → Firebase Firestore ─────────────────
 const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', (e) => {
+
+async function handleContactSubmit(e) {
   e.preventDefault();
   const btn = contactForm.querySelector('.btn-submit');
   const originalText = btn.textContent;
-  btn.textContent = '¡Mensaje enviado! ✅';
+
+  // Validate Firebase is loaded
+  if (!window.firebaseDB) {
+    btn.textContent = 'Error: Firebase no cargó ❌';
+    btn.style.pointerEvents = 'none';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.pointerEvents = '';
+    }, 3000);
+    return;
+  }
+
+  const { db, collection, addDoc, serverTimestamp } = window.firebaseDB;
+
+  // Show loading state
+  btn.textContent = 'Enviando... ⏳';
   btn.style.pointerEvents = 'none';
-  setTimeout(() => {
-    btn.textContent = originalText;
-    btn.style.pointerEvents = '';
+  btn.disabled = true;
+
+  try {
+    const name = contactForm.querySelector('#name').value.trim();
+    const email = contactForm.querySelector('#email').value.trim();
+    const message = contactForm.querySelector('#message').value.trim();
+
+    await addDoc(collection(db, 'contactMessages'), {
+      name,
+      email,
+      message,
+      createdAt: serverTimestamp(),
+      read: false
+    });
+
+    btn.textContent = '¡Mensaje enviado! ✅';
     contactForm.reset();
-  }, 3000);
-});
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.pointerEvents = '';
+      btn.disabled = false;
+    }, 3000);
+  } catch (error) {
+    console.error('Error sending message:', error);
+    btn.textContent = 'Error al enviar ❌';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.style.pointerEvents = '';
+      btn.disabled = false;
+    }, 3000);
+  }
+}
+
+contactForm.addEventListener('submit', handleContactSubmit);
 
 // ── Smooth Scroll for All Anchor Links ────────────────
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
