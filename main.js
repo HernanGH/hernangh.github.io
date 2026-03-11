@@ -61,9 +61,8 @@ revealElements.forEach(el => revealObserver.observe(el));
 // ── Typing Animation ──────────────────────────────────
 const typingElement = document.getElementById('typing-text');
 const phrases = [
-  'React · TypeScript · Node.js · AWS',
+  'React · TypeScript · Node.js',
   'Building scalable products 🚀',
-  'AWS Community Builder 2026 ☁️',
   'FullStack Professor en Coderhouse 🎓',
   'Buenos Aires, Argentina 🇦🇷'
 ];
