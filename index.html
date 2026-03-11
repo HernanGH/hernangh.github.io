@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hernán J. Condorí | Fullstack Engineer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <h1 class="logo">Hernán J. Condorí</h1>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Sobre mí</a></li>
+          <li><a href="#experience">Experiencia</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+          <li><a href="#education">Educación</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Cambiar tema">🌓</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero fade-in">
+        <img src="./images/linkeding-background.png" alt="Foto de perfil" class="profile-pic" />
+        <h2>Senior Fullstack Engineer</h2>
+        <p>Especializado en React, Next.js, Node.js, AWS y más.</p>
+      </section>
+
+      <section id="about" class="section fade-in">
+        <h2>Sobre mí</h2>
+        <p>Soy un ingeniero fullstack con más de 7 años de experiencia creando soluciones frontend y backend. Me enfoco en desarrollar productos escalables, con performance optimizada y código mantenible. Sigo buenas prácticas como SOLID, TDD y CI/CD.</p>
+        <h3>Tecnologías clave</h3>
+        <ul class="tech-list">
+          <li>React</li><li>Next.js</li><li>Node.js</li><li>AWS</li><li>TypeScript</li><li>PostgreSQL</li><li>GraphQL</li>
+        </ul>
+      </section>
+
+      <section id="experience" class="section fade-in">
+        <h2>Experiencia profesional</h2>
+        <div class="job"><h3>IPSY (2022 - Actualidad)</h3><p>Senior Fullstack Engineer | React, Next.js, Node.js, AWS</p></div>
+        <div class="job"><h3>X3M (2021 - 2022)</h3><p>Frontend Engineer | React, Redux, GraphQL</p></div>
+        <div class="job"><h3>Blockchain.com (2020 - 2021)</h3><p>Software Engineer | React, Node.js, Crypto Wallets</p></div>
+        <div class="job"><h3>Elementum (2019 - 2020)</h3><p>Frontend Developer | React, Styled Components</p></div>
+        <div class="job"><h3>Novatech (2018 - 2019)</h3><p>Fullstack Developer | Angular, .NET, SQL Server</p></div>
+        <div class="job"><h3>Grava Digital (2016 - 2018)</h3><p>Web Developer | WordPress, PHP, HTML/CSS</p></div>
+      </section>
+
+      <section id="projects" class="section fade-in">
+        <h2>Proyectos</h2>
+        <p>Puedes ver mis proyectos en <a href="https://github.com/HernanGH" target="_blank">GitHub</a>.</p>
+      </section>
+
+      <section id="education" class="section fade-in">
+        <h2>Educación y docencia</h2>
+        <p>Graduado en Ingeniería en Sistemas. Además, me desempeño como profesor y mentor en cursos de desarrollo web y tecnologías modernas.</p>
+      </section>
+
+      <section id="contact" class="section fade-in">
+        <h2>Contacto</h2>
+        <form id="contact-form">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Mensaje:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <button type="submit">Enviar</button>
+        </form>
+        <p>Email: <a href="mailto:hjcondori04@gmail.com">hjcondori04@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/hernan-condori" target="_blank">hernan-condori</a></p>
+      </section>
+    </main>
+
+    <footer><p>&copy; 2025 Hernán J. Condorí. Todos los derechos reservados.</p></footer>
+    <script src="main.js"></script>
+  </body>
+</html>
