@@ -58,21 +58,67 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach(el => revealObserver.observe(el));
 
+// ── Language Switcher ─────────────────────────────────
+const languageSelector = document.getElementById('language-selector');
+let currentLang = localStorage.getItem('userLang') || 'es';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('userLang', lang);
+  
+  document.documentElement.lang = lang;
+  if (languageSelector) {
+    languageSelector.value = lang;
+  }
+
+  const elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+        element.placeholder = translations[lang][key];
+      } else {
+        element.innerHTML = translations[lang][key];
+      }
+    }
+  });
+
+  if (typeof typedPhrases !== 'undefined' && typingElement) {
+    phrases = typedPhrases[lang] || typedPhrases['es'];
+    clearTimeout(typingTimeout);
+    phraseIndex = 0;
+    charIndex = 0;
+    isDeleting = false;
+    typingElement.textContent = '';
+    typeEffect();
+  }
+}
+
+if (languageSelector) {
+  languageSelector.addEventListener('change', (e) => {
+    setLanguage(e.target.value);
+  });
+}
+
 // ── Typing Animation ──────────────────────────────────
 const typingElement = document.getElementById('typing-text');
-const phrases = [
-  'React · TypeScript · Node.js',
-  'Building scalable products 🚀',
-  'FullStack Professor en Coderhouse 🎓',
-  'Buenos Aires, Argentina 🇦🇷'
-];
+let phrases = typeof typedPhrases !== 'undefined' 
+  ? (typedPhrases[currentLang] || typedPhrases['es']) 
+  : [
+      'React · TypeScript · Node.js',
+      'Building scalable products 🚀',
+      'FullStack Professor en Coderhouse 🎓',
+      'Buenos Aires, Argentina 🇦🇷'
+    ];
 
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 let typingSpeed = 60;
+let typingTimeout;
 
 function typeEffect() {
+  if (!phrases || !phrases.length) return;
   const current = phrases[phraseIndex];
 
   if (isDeleting) {
@@ -94,10 +140,11 @@ function typeEffect() {
     typingSpeed = 400;
   }
 
-  setTimeout(typeEffect, typingSpeed);
+  typingTimeout = setTimeout(typeEffect, typingSpeed);
 }
 
-typeEffect();
+// Initial language load
+setLanguage(currentLang);
 
 // ── Active Nav Link on Scroll ─────────────────────────
 const sections = document.querySelectorAll('section[id]');
