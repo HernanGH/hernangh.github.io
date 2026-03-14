@@ -147,6 +147,39 @@ img {
   gap: 0.5rem;
 }
 
+.lang-select {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  height: 40px;
+  padding: 0 0.6rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-family: var(--font);
+  transition: all var(--transition);
+  outline: none;
+  /* Remove default styling for a cleaner look */
+  -webkit-appearance: none;
+  appearance: none;
+  /* Add a custom subtle arrow indicator using font */
+  text-align: center;
+}
+
+.lang-select:hover,
+.lang-select:focus {
+  background-color: var(--bg-glass);
+  color: var(--text-primary);
+  border-color: var(--border-glass);
+}
+
+.lang-select option {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
 .theme-toggle {
   background: var(--bg-card);
   border: 1px solid var(--border-glass);
